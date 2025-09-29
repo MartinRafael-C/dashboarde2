@@ -1,30 +1,34 @@
-import { View, Image, Text } from 'react-native'
+import { View, Image, Text, Linking } from 'react-native'
 import React from 'react'
 import IconButton from "./IconButton"
 import "@/global.css"
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
+
+const Links = {
+  instagram: "https://www.instagram.com/010wrafa/",
+  facebook: "https://www.facebook.com/profile.php?id=100080919690136",
+  whatsapp: "https://wa.me/593990097694", 
+  linkedin: "https://www.linkedin.com/in/martin-contreras-9a7136380/" 
+}
 
 const ProfileDetails = () => {
   return (
     <View className="flex justify-center items-center">
       <Image
-        className="max-h-36  max-w-36 rounded-full "
-        source={require('../assets/images/icon.png')}
+        className="max-h-36 max-w-36 rounded-full"
+        source={require('../assets/images/fotoyo.jpeg')}
       />
 
       <Text className="text-2xl font-bold text-center"> Martin Contreras</Text>
-      <Text className="text-xl font-blod text-gray-400">Student </Text>
+      {/* 2. Corregido el error de tipeo de font-blod a font-bold */}
+      <Text className="text-xl font-bold text-gray-400">Student </Text>
 
-
-      <IconButton icon='logo-instagram' pulsar={() => console.log("Instagram")} label={''}  ></IconButton>
-      <IconButton icon='facebook-square' pulsar={() => console.log("Facebook")} label={''} ></IconButton>
-      <IconButton icon='whatsapp' pulsar={() => console.log("Whatsaap")} label={''} ></IconButton>
-      <IconButton icon='linkedin' pulsar={() => console.log("Linkedin")} label={''} ></IconButton>
-
-
-
-
+      <View className="flex-row justify-around w-full mt-4">
+        <IconButton icon='logo-instagram' pulsar={() => Linking.openURL(Links.instagram)} label={''} />
+        <IconButton icon='facebook-square' pulsar={() => Linking.openURL(Links.facebook)} iconFamily='FontAwesome5' label={''} />
+        <IconButton icon='whatsapp' pulsar={() => Linking.openURL(Links.whatsapp)} iconFamily='FontAwesome5' label={''} />
+        <IconButton icon='linkedin' pulsar={() => Linking.openURL(Links.linkedin)} iconFamily='FontAwesome5' label={''} />
+      </View>
     </View>
   )
 }
